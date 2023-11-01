@@ -64,11 +64,11 @@ const PopoverNavbar = ({
           width: "100%",
         }}
       >
-        <img
+        {/* <img
           style={{ height: "auto", maxHeight: "40px" }}
           src={moa_kenya_logo}
           alt={"Moa logo"}
-        />
+        /> */}
         <img
           // src={require("../../Assets/Img/footer_logo.svg")}
           style={{ height: "auto", maxHeight: "40px" }}

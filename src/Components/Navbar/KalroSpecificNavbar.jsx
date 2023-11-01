@@ -36,7 +36,7 @@ const KalroSpecificNavbar = (props) => {
         gap: props.mobile ? "1px" : "50px",
       }}
     >
-      <img
+      {/* <img
         // src={require("../../Assets/Img/footer_logo.svg")}
         style={{
           height: "auto",
@@ -46,7 +46,7 @@ const KalroSpecificNavbar = (props) => {
         }}
         src={moa_kenya_logo}
         alt="HeaderLogo"
-      />
+      /> */}
 
       {props.showVerticalDivider && (
         <Divider
