@@ -141,7 +141,7 @@ const FooterNew = () => {
             alt="footerLogo"
           /> */}
         <Divider />
-        <img
+        {/* <img
           style={{
             height: "auto",
             maxWidth: "172px",
@@ -150,7 +150,7 @@ const FooterNew = () => {
           }}
           src={digital_green_footer_logo}
           alt="footerLogo"
-        />
+        /> */}
       </div>
       <Box sx={containerStyle}>
         <div
