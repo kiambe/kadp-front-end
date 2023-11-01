@@ -1,5 +1,5 @@
 import React from "react";
-import moa_kenya_logo from "../../Assets/Img/Farmstack V2.0/moa_kenya_logo.jpg";
+import moa_kenya_logo from "../../Assets/Img/Farmstack V2.0/moa_kenya_logo.png";
 import UrlConstant from "../../Constants/UrlConstants";
 import { Divider } from "@mui/material";
 
