@@ -1,0 +1,807 @@
+[
+  
+    {
+      "id": 2,
+      "crop_name": "Aloe"
+    },
+    {
+      "id": 3,
+      "crop_name": "Alstroemeria"
+    },
+    {
+      "id": 4,
+      "crop_name": "Amaranths"
+    },
+    {
+      "id": 5,
+      "crop_name": "Anthurium"
+    },
+    {
+      "id": 6,
+      "crop_name": "Apples"
+    },
+    {
+      "id": 7,
+      "crop_name": "Apricots"
+    },
+    {
+      "id": 8,
+      "crop_name": "Arabicum"
+    },
+    {
+      "id": 9,
+      "crop_name": "Arrow root"
+    },
+    {
+      "id": 10,
+      "crop_name": "Artemisia"
+    },
+    {
+      "id": 11,
+      "crop_name": "Artichoke"
+    },
+    {
+      "id": 12,
+      "crop_name": "Asparagus"
+    },
+    {
+      "id": 13,
+      "crop_name": "Avocados"
+    },
+    {
+      "id": 14,
+      "crop_name": "Baby Corn"
+    },
+    {
+      "id": 15,
+      "crop_name": "Bambara"
+    },
+    {
+      "id": 16,
+      "crop_name": "Bambara Beans"
+    },
+    {
+      "id": 17,
+      "crop_name": "Bamboo"
+    },
+    {
+      "id": 18,
+      "crop_name": "Bananas"
+    },
+    {
+      "id": 19,
+      "crop_name": "Barley"
+    },
+    {
+      "id": 20,
+      "crop_name": "Basil"
+    },
+    {
+      "id": 21,
+      "crop_name": "Beans"
+    },
+    {
+      "id": 22,
+      "crop_name": "Beetroot"
+    },
+    {
+      "id": 23,
+      "crop_name": "Begonia"
+    },
+    {
+      "id": 24,
+      "crop_name": "Bixa"
+    },
+    {
+      "id": 25,
+      "crop_name": "Black Nightshade"
+    },
+    {
+      "id": 26,
+      "crop_name": "Blue Gum"
+    },
+    {
+      "id": 27,
+      "crop_name": "Blue gums"
+    },
+    {
+      "id": 28,
+      "crop_name": "Bracharia"
+    },
+    {
+      "id": 29,
+      "crop_name": "Broad Beans"
+    },
+    {
+      "id": 30,
+      "crop_name": "Broccoli"
+    },
+    {
+      "id": 31,
+      "crop_name": "Bulb Onion"
+    },
+    {
+      "id": 32,
+      "crop_name": "Butter Nu"
+    },
+    {
+      "id": 33,
+      "crop_name": "Butter Nut"
+    },
+    {
+      "id": 34,
+      "crop_name": "Cabbages"
+    },
+    {
+      "id": 35,
+      "crop_name": "Calliandra"
+    },
+    {
+      "id": 36,
+      "crop_name": "Cannabis Sativa"
+    },
+    {
+      "id": 37,
+      "crop_name": "Capsicum"
+    },
+    {
+      "id": 38,
+      "crop_name": "Carnations"
+    },
+    {
+      "id": 39,
+      "crop_name": "Carrots"
+    },
+    {
+      "id": 40,
+      "crop_name": "Carthamus"
+    },
+    {
+      "id": 41,
+      "crop_name": "Cashew nuts"
+    },
+    {
+      "id": 42,
+      "crop_name": "Cashewnuts"
+    },
+    {
+      "id": 43,
+      "crop_name": "Cassava"
+    },
+    {
+      "id": 44,
+      "crop_name": "Castor"
+    },
+    {
+      "id": 45,
+      "crop_name": "Cauliflower"
+    },
+    {
+      "id": 46,
+      "crop_name": "Celery"
+    },
+    {
+      "id": 47,
+      "crop_name": "cheloliik"
+    },
+    {
+      "id": 48,
+      "crop_name": "Chickpeas"
+    },
+    {
+      "id": 49,
+      "crop_name": "Chilies"
+    },
+    {
+      "id": 50,
+      "crop_name": "Chives"
+    },
+    {
+      "id": 51,
+      "crop_name": "Cinnamon"
+    },
+    {
+      "id": 52,
+      "crop_name": "Clover"
+    },
+    {
+      "id": 53,
+      "crop_name": "Cloves"
+    },
+    {
+      "id": 54,
+      "crop_name": "Cocoa"
+    },
+    {
+      "id": 55,
+      "crop_name": "Coconuts"
+    },
+    {
+      "id": 56,
+      "crop_name": "Coffee"
+    },
+    {
+      "id": 57,
+      "crop_name": "Corriander"
+    },
+    {
+      "id": 58,
+      "crop_name": "Cotton"
+    },
+    {
+      "id": 59,
+      "crop_name": "Courgettes"
+    },
+    {
+      "id": 60,
+      "crop_name": "Cowpea leaves"
+    },
+    {
+      "id": 61,
+      "crop_name": "Cowpeas"
+    },
+    {
+      "id": 62,
+      "crop_name": "Cucumbers"
+    },
+    {
+      "id": 63,
+      "crop_name": "Custard Apple"
+    },
+    {
+      "id": 64,
+      "crop_name": "Cypress"
+    },
+    {
+      "id": 65,
+      "crop_name": "Dates"
+    },
+    {
+      "id": 66,
+      "crop_name": "Desmodium"
+    },
+    {
+      "id": 67,
+      "crop_name": "Dolichos"
+    },
+    {
+      "id": 68,
+      "crop_name": "Dragon fruit"
+    },
+    {
+      "id": 69,
+      "crop_name": "Dudhi"
+    },
+    {
+      "id": 70,
+      "crop_name": "Easter Lilly"
+    },
+    {
+      "id": 71,
+      "crop_name": "Eggplant"
+    },
+    {
+      "id": 72,
+      "crop_name": "Erygium"
+    },
+    {
+      "id": 73,
+      "crop_name": "French Beans"
+    },
+    {
+      "id": 74,
+      "crop_name": "Garlic"
+    },
+    {
+      "id": 75,
+      "crop_name": "Geranium"
+    },
+    {
+      "id": 76,
+      "crop_name": "Ginger"
+    },
+    {
+      "id": 77,
+      "crop_name": "Gladiolus"
+    },
+    {
+      "id": 78,
+      "crop_name": "Grain Amaranthus"
+    },
+    {
+      "id": 79,
+      "crop_name": "Grapefruits"
+    },
+    {
+      "id": 80,
+      "crop_name": "Green Grams"
+    },
+    {
+      "id": 81,
+      "crop_name": "Grivellia"
+    },
+    {
+      "id": 82,
+      "crop_name": "Groudnuts"
+    },
+    {
+      "id": 83,
+      "crop_name": "Groundnuts"
+    },
+    {
+      "id": 84,
+      "crop_name": "Guard"
+    },
+    {
+      "id": 85,
+      "crop_name": "Guatemala"
+    },
+    {
+      "id": 86,
+      "crop_name": "Guavas"
+    },
+    {
+      "id": 87,
+      "crop_name": "Gypsophilla"
+    },
+    {
+      "id": 88,
+      "crop_name": "Hops"
+    },
+    {
+      "id": 89,
+      "crop_name": "Indigenous trees"
+    },
+    {
+      "id": 90,
+      "crop_name": "Jatropha"
+    },
+    {
+      "id": 91,
+      "crop_name": "java palm"
+    },
+    {
+      "id": 92,
+      "crop_name": "Jojoba"
+    },
+    {
+      "id": 93,
+      "crop_name": "Jute"
+    },
+    {
+      "id": 94,
+      "crop_name": "Jute plant"
+    },
+    {
+      "id": 95,
+      "crop_name": "Jute plant (Murere)"
+    },
+    {
+      "id": 96,
+      "crop_name": "Kales"
+    },
+    {
+      "id": 97,
+      "crop_name": "Karella"
+    },
+    {
+      "id": 98,
+      "crop_name": "Kenaf"
+    },
+    {
+      "id": 99,
+      "crop_name": "Kikuyu grass"
+    },
+    {
+      "id": 100,
+      "crop_name": "Lavender"
+    },
+    {
+      "id": 101,
+      "crop_name": "Leaf Amaranth"
+    },
+    {
+      "id": 102,
+      "crop_name": "Leeks"
+    },
+    {
+      "id": 103,
+      "crop_name": "legumes"
+    },
+    {
+      "id": 104,
+      "crop_name": "Lemon Grass"
+    },
+    {
+      "id": 105,
+      "crop_name": "Lemons"
+    },
+    {
+      "id": 106,
+      "crop_name": "Lentils"
+    },
+    {
+      "id": 107,
+      "crop_name": "Lettuce"
+    },
+    {
+      "id": 108,
+      "crop_name": "Leucaena"
+    },
+    {
+      "id": 109,
+      "crop_name": "Lime"
+    },
+    {
+      "id": 110,
+      "crop_name": "Linseed"
+    },
+    {
+      "id": 111,
+      "crop_name": "Love grass"
+    },
+    {
+      "id": 112,
+      "crop_name": "Lucerne"
+    },
+    {
+      "id": 113,
+      "crop_name": "Lupins"
+    },
+    {
+      "id": 114,
+      "crop_name": "Macadamia nuts"
+    },
+    {
+      "id": 115,
+      "crop_name": "Maize"
+    },
+    {
+      "id": 116,
+      "crop_name": "Maize fodder crop"
+    },
+    {
+      "id": 117,
+      "crop_name": "Maize food crop"
+    },
+    {
+      "id": 118,
+      "crop_name": "Mangoes"
+    },
+    {
+      "id": 119,
+      "crop_name": "Millet"
+    },
+    {
+      "id": 120,
+      "crop_name": "Mint"
+    },
+    {
+      "id": 121,
+      "crop_name": "Miraa"
+    },
+    {
+      "id": 122,
+      "crop_name": "Mobydick"
+    },
+    {
+      "id": 123,
+      "crop_name": "Moringa"
+    },
+    {
+      "id": 124,
+      "crop_name": "Mulenda"
+    },
+    {
+      "id": 125,
+      "crop_name": "Mushroom"
+    },
+    {
+      "id": 126,
+      "crop_name": "Napier"
+    },
+    {
+      "id": 127,
+      "crop_name": "None"
+    },
+    {
+      "id": 128,
+      "crop_name": "Oats"
+    },
+    {
+      "id": 129,
+      "crop_name": "Oil Palm"
+    },
+    {
+      "id": 130,
+      "crop_name": "Okra"
+    },
+    {
+      "id": 131,
+      "crop_name": "Olive"
+    },
+    {
+      "id": 132,
+      "crop_name": "Olives"
+    },
+    {
+      "id": 133,
+      "crop_name": "Onions"
+    },
+    {
+      "id": 134,
+      "crop_name": "Oranges"
+    },
+    {
+      "id": 135,
+      "crop_name": "Orchids"
+    },
+    {
+      "id": 136,
+      "crop_name": "Other (specify)"
+    },
+    {
+      "id": 137,
+      "crop_name": "Papyrus"
+    },
+    {
+      "id": 138,
+      "crop_name": "Parsley"
+    },
+    {
+      "id": 139,
+      "crop_name": "Passion fruits"
+    },
+    {
+      "id": 140,
+      "crop_name": "Pawpaws"
+    },
+    {
+      "id": 141,
+      "crop_name": "Peaches"
+    },
+    {
+      "id": 142,
+      "crop_name": "Pears"
+    },
+    {
+      "id": 143,
+      "crop_name": "Peas"
+    },
+    {
+      "id": 144,
+      "crop_name": "Pennisetum"
+    },
+    {
+      "id": 145,
+      "crop_name": "Peppers"
+    },
+    {
+      "id": 146,
+      "crop_name": "Pigeon Peas"
+    },
+    {
+      "id": 147,
+      "crop_name": "Pineapples"
+    },
+    {
+      "id": 148,
+      "crop_name": "Plantains"
+    },
+    {
+      "id": 149,
+      "crop_name": "Plums"
+    },
+    {
+      "id": 150,
+      "crop_name": "Potatoes"
+    },
+    {
+      "id": 151,
+      "crop_name": "Pumpkin"
+    },
+    {
+      "id": 152,
+      "crop_name": "Pumpkin leaves"
+    },
+    {
+      "id": 153,
+      "crop_name": "Pumpkins"
+    },
+    {
+      "id": 154,
+      "crop_name": "Pyrethrum"
+    },
+    {
+      "id": 155,
+      "crop_name": "Radish"
+    },
+    {
+      "id": 156,
+      "crop_name": "Rapeseed"
+    },
+    {
+      "id": 157,
+      "crop_name": "Rhodes grass"
+    },
+    {
+      "id": 158,
+      "crop_name": "Rice"
+    },
+    {
+      "id": 159,
+      "crop_name": "Rosemary"
+    },
+    {
+      "id": 160,
+      "crop_name": "Roses"
+    },
+    {
+      "id": 161,
+      "crop_name": "Rye"
+    },
+    {
+      "id": 162,
+      "crop_name": "Safflower"
+    },
+    {
+      "id": 163,
+      "crop_name": "Scabiosa"
+    },
+    {
+      "id": 164,
+      "crop_name": "Sesbania"
+    },
+    {
+      "id": 165,
+      "crop_name": "Setaria"
+    },
+    {
+      "id": 166,
+      "crop_name": "Simsim"
+    },
+    {
+      "id": 167,
+      "crop_name": "Sisal"
+    },
+    {
+      "id": 168,
+      "crop_name": "Slender Leaf"
+    },
+    {
+      "id": 169,
+      "crop_name": "Sorghum"
+    },
+    {
+      "id": 170,
+      "crop_name": "Soybeans"
+    },
+    {
+      "id": 171,
+      "crop_name": "Spider plant"
+    },
+    {
+      "id": 172,
+      "crop_name": "Spinach"
+    },
+    {
+      "id": 173,
+      "crop_name": "Spring Onion"
+    },
+    {
+      "id": 174,
+      "crop_name": "Star grass"
+    },
+    {
+      "id": 175,
+      "crop_name": "Stevia"
+    },
+    {
+      "id": 176,
+      "crop_name": "Stinging Nettle"
+    },
+    {
+      "id": 177,
+      "crop_name": "Strawberries"
+    },
+    {
+      "id": 178,
+      "crop_name": "Sugar Beet"
+    },
+    {
+      "id": 179,
+      "crop_name": "Sugar Cane"
+    },
+    {
+      "id": 180,
+      "crop_name": "Sunflower"
+    },
+    {
+      "id": 181,
+      "crop_name": "Sweet Potatoes"
+    },
+    {
+      "id": 182,
+      "crop_name": "Sweet Sorghum"
+    },
+    {
+      "id": 183,
+      "crop_name": "Tangerines"
+    },
+    {
+      "id": 184,
+      "crop_name": "Tea"
+    },
+    {
+      "id": 185,
+      "crop_name": "tee tree"
+    },
+    {
+      "id": 186,
+      "crop_name": "Themeda Grass"
+    },
+    {
+      "id": 187,
+      "crop_name": "Tindori"
+    },
+    {
+      "id": 188,
+      "crop_name": "Tobacco"
+    },
+    {
+      "id": 189,
+      "crop_name": "Tomatoes"
+    },
+    {
+      "id": 190,
+      "crop_name": "Tree Tomato"
+    },
+    {
+      "id": 191,
+      "crop_name": "Tumeric"
+    },
+    {
+      "id": 192,
+      "crop_name": "Tunguja"
+    },
+    {
+      "id": 193,
+      "crop_name": "Turia"
+    },
+    {
+      "id": 194,
+      "crop_name": "Turnip"
+    },
+    {
+      "id": 195,
+      "crop_name": "Valore"
+    },
+    {
+      "id": 196,
+      "crop_name": "Vanilla"
+    },
+    {
+      "id": 197,
+      "crop_name": "Veronica"
+    },
+    {
+      "id": 198,
+      "crop_name": "Vetches"
+    },
+    {
+      "id": 199,
+      "crop_name": "Water melon"
+    },
+    {
+      "id": 200,
+      "crop_name": "Wheat"
+    },
+    {
+      "id": 201,
+      "crop_name": "White Sapote"
+    },
+    {
+      "id": 202,
+      "crop_name": "Yams"
+    }
+  ]

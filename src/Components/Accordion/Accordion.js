@@ -124,17 +124,22 @@ const ControlledAccordion = ({
               }
               style={isCustomDetailStyle ? { textAlign: "left" } : {}}
             >
+              
               {acc?.details?.length ? (
-                acc?.details.map((detail, index) => (
+                <>
+                
+              {/* {JSON.stringify(acc)} */}
+                
+                {acc?.details.map((detail, index) => (
                   <Box
                     id={`dataset-accourdion-details-${index}`}
                     key={index}
                     sx={isCustomDetailStyle ? customDetailsStyle : detailsStyle}
                   >
-                    {detail}
+                    {detail} 
                   </Box>
-                ))
-              ) : (
+                ))}
+             </> ) : (
                 <Box>{emptyMessage}</Box>
               )}
             </Box>

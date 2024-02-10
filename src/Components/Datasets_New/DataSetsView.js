@@ -5,6 +5,7 @@ import {
   Button,
   Card,
   Divider,
+  Modal,
   Typography,
   useMediaQuery,
   useTheme,
@@ -37,7 +38,29 @@ import CustomDeletePopper from "../DeletePopper/CustomDeletePopper";
 import GlobalStyle from "../../Assets/CSS/global.module.css";
 import { Col, Row } from "react-bootstrap";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import KALRODataVizualiztions from "./KALRODataVizualiztions";
+import { AxiosGetService } from "./AxiosServices";
+import Dashboard from "./KalroComponents/Dashboard";
+import { getCountyStats_Merged } from "../../app-redux/features/appData/appDataSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setOfflineLocalStorage } from "./OfflineStorage";
+// import { END_POINT } from "./KalroUrls";
+// import END_POINT from "./KalroUrls";
+const KALRO_URL  = "https://kiamisapi.kalro.org/api/"
+
+const  END_POINT={  
+  county_data_stats:`${KALRO_URL}/county_data_stats`,
+  crop_data:`${KALRO_URL}/crops_data`
+}
 const DataSetsView = (props) => {
+  const dispatch = useDispatch();
+
+  const appData = useSelector((state) => state.appData);
+  const { county_stats_merged, ward_data_merged } = appData;
+
+  const { data: county_stats_merged_data, } =
+    county_stats_merged;
+
   const { userType, breadcrumbFromRoute } = props;
   const history = useHistory();
   const { id } = useParams();
@@ -83,6 +106,9 @@ const DataSetsView = (props) => {
   ]);
 
   const [dataSetName, setDataSetName] = useState("");
+  const [donwloadedJSON, setDownloadedJSON] = useState(null);
+  const [showModal, SetShowModal] = useState(true);
+
   const [dataSetDescription, setDataSetDescription] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
@@ -91,6 +117,8 @@ const DataSetsView = (props) => {
   // Categories
   // const [categorises, setCategorises] = useState({})
   const [geography, setGeography] = useState();
+  const [Fname, SetFname] = useState("Daniel");
+
 
   // Organisation & User Details
   const [orgDetails, setOrgDetails] = useState();
@@ -191,11 +219,16 @@ const DataSetsView = (props) => {
       .then((response) => {
         callLoader(false);
         setDataSetName(response.data.name);
+        // console.log({response})
         setGeography(
           Object.keys(response.data?.geography).length
             ? response.data?.geography
             : { country: null, state: null, city: null }
         );
+
+        getCountyStats(Object.keys(response.data?.geography).length
+        ? response.data?.geography
+        : { country: null, state: null, city: null })
         setIsUpdating(response.data.constantly_update);
         setFromDate(
           response.data.data_capture_start
@@ -243,6 +276,8 @@ const DataSetsView = (props) => {
               <Box>
                 <Box className="d-flex">
                   <FileWithAction
+                  
+                    setDownloadedJSON={triggerPopulatedonwloadedJSON}
                     index={index}
                     datasetId={response?.data?.id}
                     name={tempFile?.file?.slice(
@@ -417,448 +452,549 @@ const DataSetsView = (props) => {
       });
   };
 
+  
+  const handleClose = () => {
+    SetShowModal(false);
+  };
   useEffect(() => {
     setSelectedFileDetails(null);
     setSelectedFileDetailsForDatasetFileAccess(null);
   }, []);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
   useEffect(() => {
     getDataset();
   }, [id, approvalStatus]);
 
+
+  const getCountyStats=(data)=>{
+    let user_county = data.state.name
+    console.log(`getting stats for ${user_county}`)
+
+    if (county_stats_merged_data === null && user_county) {
+      dispatch(getCountyStats_Merged({ county: user_county })).unwrap()
+      .then((res)=>{
+        setOfflineLocalStorage("@CountyStats_Merged", res);
+      })
+    
+    }else{
+   
+    }
+  }
+
+
+
+  const triggerPopulatedonwloadedJSON2 = async(data) => {
+      // console.log(data)
+      let count_name = data.state.name
+      // console.log(END_POINT)
+      const res = await AxiosGetService(`${END_POINT.county_data_stats}?county=${count_name}`)
+      console(res)
+    
+  };
+
+  const triggerPopulatedonwloadedJSON = (data, state = true) => {
+    // setDownloadedJSON(data);
+    setTimeout(() => {
+      console.log(Fname)
+    }, 3000);
+    // setGeography2("geography")
+    // let count_name = geography?.state?.name ? geography?.state?.name + ", " : "--"
+
+    // alert(count_name)
+    
+  };
+
+  // console.log({geography})
   return (
-    !isLoading && (
-      <Box>
-        <Box sx={containerStyle}>
-          <div className="text-left mt-50">
-            <span
-              className="add_light_text cursor-pointer breadcrumbItem"
-              onClick={() => history.push(handleClickRoutes())}
-              data-testid="goPrevRoute"
-            >
-              {breadcrumbFromRoute ?? "Datasets"}
-            </span>
-            <span className="add_light_text ml-11">
-              {/* <img src={require("../../Assets/Img/dot.svg")} /> */}
-              <ArrowForwardIosIcon sx={{ fontSize: "14px", fill: "#00A94F" }} />
-            </span>
-            <span className="add_light_text ml-11 fw600">
-              {history.location?.state?.tab === "my_organisation"
-                ? "My Organisation"
-                : "Other Organisation"}
-            </span>
-          </div>
-          <Box
-            className={
-              mobile
-                ? ""
-                : "d-flex justify-content-between align-items-baseline"
-            }
-          >
-            <div className="bold_title mt-50">
-              {"Dataset Details"}
-              <Typography
-                className={`${GlobalStyle.textDescription} text-left ${GlobalStyle.bold400} ${GlobalStyle.highlighted_text}`}
+    <>
+      {/* {JSON.stringify(donwloadedJSON)} */}
+
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
+      {/* <Modal
+        open={showModal}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+       <div>
+       <Box sx={{...style, width: "90%",height:"90%",textAlign:"left" }}>
+          <h2 id="parent-modal-title">Vizualization of the data</h2>
+          donwloadedJSON 
+        </Box>
+       </div>
+      </Modal> */}
+
+      {!isLoading && (
+        <Box>
+          <Box sx={containerStyle}>
+            <div className="text-left mt-50">
+              <span
+                className="add_light_text cursor-pointer breadcrumbItem"
+                onClick={() => history.push(handleClickRoutes())}
+                data-testid="goPrevRoute"
               >
-                {" "}
+                {breadcrumbFromRoute ?? "Datasets"}
+              </span>
+              <span className="add_light_text ml-11">
+                {/* <img src={require("../../Assets/Img/dot.svg")} /> */}
+                <ArrowForwardIosIcon
+                  sx={{ fontSize: "14px", fill: "#00A94F" }}
+                />
+              </span>
+              <span className="add_light_text ml-11 fw600">
                 {history.location?.state?.tab === "my_organisation"
-                  ? "Explore in-depth information about your uploaded dataset."
-                  : "Explore the detailed information and characteristics of datasets."}{" "}
-              </Typography>
+                  ? "My Organisation"
+                  : "Other Organisation"}
+              </span>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: mobile ? "left" : "space-evenly",
-                alignItems: "center",
-              }}
+            <Box
+              className={
+                mobile
+                  ? ""
+                  : "d-flex justify-content-between align-items-baseline"
+              }
             >
-              {history.location?.state?.tab === "my_organisation" &&
-              userType !== "guest" ? (
-                <Box className={mobile ? "d-flex" : ""}>
-                  <CustomDeletePopper
-                    DeleteItem={dataSetName}
-                    anchorEl={anchorEl}
-                    handleDelete={handleDelete}
-                    id={id}
-                    open={open}
-                    closePopper={closePopper}
-                  />
-                  <Button
-                    sx={{
-                      color: "#FF5630",
-                      fontFamily: "Public Sans",
-                      fontWeight: "700",
-                      fontSize: mobile ? "11px" : "15px",
-                      border: "1px solid rgba(255, 86, 48, 0.48)",
-                      width: "100px",
-                      height: "48px",
-                      marginRight: "28px",
-                      textTransform: "none",
-                      "&:hover": {
-                        background: "none",
+              <div className="bold_title mt-50">
+                {"Dataset Details"}
+                <Typography
+                  className={`${GlobalStyle.textDescription} text-left ${GlobalStyle.bold400} ${GlobalStyle.highlighted_text}`}
+                >
+                  {" "}
+                  {history.location?.state?.tab === "my_organisation"
+                    ? "Explore in-depth information about your uploaded dataset."
+                    : "Explore the detailed information and characteristics of datasets."}{" "}
+                </Typography>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: mobile ? "left" : "space-evenly",
+                  alignItems: "center",
+                }}
+              >
+                {history.location?.state?.tab === "my_organisation" &&
+                userType !== "guest" ? (
+                  <Box className={mobile ? "d-flex" : ""}>
+                    <CustomDeletePopper
+                      DeleteItem={dataSetName}
+                      anchorEl={anchorEl}
+                      handleDelete={handleDelete}
+                      id={id}
+                      open={open}
+                      closePopper={closePopper}
+                    />
+                    <Button
+                      sx={{
+                        color: "#FF5630",
+                        fontFamily: "Public Sans",
+                        fontWeight: "700",
+                        fontSize: mobile ? "11px" : "15px",
                         border: "1px solid rgba(255, 86, 48, 0.48)",
-                      },
-                    }}
-                    variant="outlined"
-                    onClick={handleDeletePopper}
-                  >
-                    Delete
-                    <DeleteOutlineIcon
-                      sx={{
-                        fill: "#FF5630",
-                        fontSize: "22px",
-                        marginLeft: "4px",
+                        width: "100px",
+                        height: "48px",
+                        marginRight: "28px",
+                        textTransform: "none",
+                        "&:hover": {
+                          background: "none",
+                          border: "1px solid rgba(255, 86, 48, 0.48)",
+                        },
                       }}
-                    />
-                  </Button>
-                  <Button
-                    sx={{
-                      color: "#00A94F",
-                      fontFamily: "Public Sans",
-                      fontWeight: "700",
-                      fontSize: mobile ? "11px" : "15px",
-                      border: "1px solid rgba(0, 171, 85, 0.48)",
-                      width: "100px",
-                      marginRight: "28px",
-                      height: "48px",
-                      textTransform: "none !important",
-                      "&:hover": {
-                        background: "none",
+                      variant="outlined"
+                      onClick={handleDeletePopper}
+                    >
+                      Delete
+                      <DeleteOutlineIcon
+                        sx={{
+                          fill: "#FF5630",
+                          fontSize: "22px",
+                          marginLeft: "4px",
+                        }}
+                      />
+                    </Button>
+                    <Button
+                      sx={{
+                        color: "#00A94F",
+                        fontFamily: "Public Sans",
+                        fontWeight: "700",
+                        fontSize: mobile ? "11px" : "15px",
                         border: "1px solid rgba(0, 171, 85, 0.48)",
-                      },
-                    }}
-                    onClick={handleEdit}
-                    variant="outlined"
-                  >
-                    Edit
-                    <EditIcon
-                      sx={{
-                        fill: "#00A94F",
-                        fontSize: "22px",
-                        marginLeft: "4px",
-                        marginBottom: "2px",
+                        width: "100px",
+                        marginRight: "28px",
+                        height: "48px",
+                        textTransform: "none !important",
+                        "&:hover": {
+                          background: "none",
+                          border: "1px solid rgba(0, 171, 85, 0.48)",
+                        },
                       }}
-                    />
-                  </Button>
-                  <Button
-                    sx={{
-                      color: "#3366FF",
-                      fontFamily: "Public Sans",
-                      fontWeight: "700",
-                      fontSize: mobile ? "11px" : "15px",
-                      border: "1px solid #3366FF",
-                      width: "130px",
-                      height: "48px",
-                      textTransform: "none !important",
-                      "&:hover": {
-                        background: "none",
-                        border: "1px solid #3366FF",
-                      },
-                    }}
-                    onClick={() => {
-                      history.push(
-                        `/${findType()}/dashboard-api-request/${id}`,
-                        {
-                          data: "",
-                          value: history.location?.state?.tab,
-                        }
-                      );
-                    }}
-                    variant="outlined"
-                  >
-                    Dashboard{" "}
-                    <BarChartIcon
+                      onClick={handleEdit}
+                      variant="outlined"
+                    >
+                      Edit
+                      <EditIcon
+                        sx={{
+                          fill: "#00A94F",
+                          fontSize: "22px",
+                          marginLeft: "4px",
+                          marginBottom: "2px",
+                        }}
+                      />
+                    </Button>
+                    <Button
                       sx={{
-                        fill: "#3366FF",
-                        fontSize: "22px",
-                        marginLeft: "4px",
-                        marginBottom: "2px",
-                      }}
-                    />
-                  </Button>
-                </Box>
-              ) : (
-                <Box className={mobile ? "d-flex" : ""}>
-                  <CustomDeletePopper
-                    DeleteItem={dataSetName}
-                    anchorEl={anchorEl}
-                    handleDelete={handleDelete}
-                    id={id}
-                    open={open}
-                    closePopper={closePopper}
-                  />
-                  <Button
-                    sx={{
-                      color: "#3366FF",
-                      fontFamily: "Public Sans",
-                      fontWeight: "700",
-                      fontSize: mobile ? "11px" : "15px",
-                      border: "1px solid #3366FF",
-                      width: "130px",
-                      height: "48px",
-                      textTransform: "none !important",
-                      "&:hover": {
-                        background: "none",
+                        color: "#3366FF",
+                        fontFamily: "Public Sans",
+                        fontWeight: "700",
+                        fontSize: mobile ? "11px" : "15px",
                         border: "1px solid #3366FF",
-                      },
-                    }}
-                    onClick={() =>
-                      userType == "guest"
-                        ? history.push(`/home/dashboard-api-request/${id}`, {
+                        width: "130px",
+                        height: "48px",
+                        textTransform: "none !important",
+                        "&:hover": {
+                          background: "none",
+                          border: "1px solid #3366FF",
+                        },
+                      }}
+                      onClick={() => {
+                        history.push(
+                          `/${findType()}/dashboard-api-request/${id}`,
+                          {
                             data: "",
                             value: history.location?.state?.tab,
-                          })
-                        : history.push(
-                            `/${findType()}/dashboard-api-request/${id}`,
-                            {
+                          }
+                        );
+                      }}
+                      variant="outlined"
+                    >
+                      Dashboard{" "}
+                      <BarChartIcon
+                        sx={{
+                          fill: "#3366FF",
+                          fontSize: "22px",
+                          marginLeft: "4px",
+                          marginBottom: "2px",
+                        }}
+                      />
+                    </Button>
+                  </Box>
+                ) : (
+                  <Box className={mobile ? "d-flex" : ""}>
+                    <CustomDeletePopper
+                      DeleteItem={dataSetName}
+                      anchorEl={anchorEl}
+                      handleDelete={handleDelete}
+                      id={id}
+                      open={open}
+                      closePopper={closePopper}
+                    />
+                    <Button
+                      sx={{
+                        color: "#3366FF",
+                        fontFamily: "Public Sans",
+                        fontWeight: "700",
+                        fontSize: mobile ? "11px" : "15px",
+                        border: "1px solid #3366FF",
+                        width: "130px",
+                        height: "48px",
+                        textTransform: "none !important",
+                        "&:hover": {
+                          background: "none",
+                          border: "1px solid #3366FF",
+                        },
+                      }}
+                      onClick={() =>
+                        userType == "guest"
+                          ? history.push(`/home/dashboard-api-request/${id}`, {
                               data: "",
                               value: history.location?.state?.tab,
-                            }
-                          )
-                    }
-                    variant="outlined"
-                  >
-                    Dashboard{" "}
-                    <BarChartIcon
-                      sx={{
-                        fill: "#3366FF",
-                        fontSize: "22px",
-                        marginLeft: "4px",
-                        marginBottom: "2px",
-                      }}
-                    />
-                  </Button>
-                </Box>
-              )}
-            </div>
-          </Box>
-          {/* <div className="bold_title mt-50">{"Dataset details"}</div> */}
-          <Box className={mobile ? "mt-38" : "d-flex mt-38"}>
-            <Box sx={{ width: mobile ? "300px" : "638px" }}>
-              <Typography className="view_agriculture_heading text-left ellipsis">
-                {dataSetName}
-              </Typography>
-              <Typography className="view_datasets_light_text text-left mt-20">
-                Description
-              </Typography>
-              <Typography className="view_datasets_bold_text wordWrap text-left mt-3">
-                {dataSetDescription}
-              </Typography>
+                            })
+                          : history.push(
+                              `/${findType()}/dashboard-api-request/${id}`,
+                              {
+                                data: "",
+                                value: history.location?.state?.tab,
+                              }
+                            )
+                      }
+                      variant="outlined"
+                    >
+                      Dashboard{" "}
+                      <BarChartIcon
+                        sx={{
+                          fill: "#3366FF",
+                          fontSize: "22px",
+                          marginLeft: "4px",
+                          marginBottom: "2px",
+                        }}
+                      />
+                    </Button>
+                  </Box>
+                )}
+              </div>
             </Box>
-            <Box className={mobile ? "" : "ml-134"}>
-              {/* <Box className="text-left">
+            {/* <div className="bold_title mt-50">{"Dataset details"}</div> */}
+            <Box className={mobile ? "mt-38" : "d-flex mt-38"}>
+              <Box sx={{ width: mobile ? "300px" : "638px" }}>
+                <Typography className="view_agriculture_heading text-left ellipsis">
+                  {dataSetName}
+                </Typography>
+                <Typography className="view_datasets_light_text text-left mt-20">
+                  Description
+                </Typography>
+                <Typography className="view_datasets_bold_text wordWrap text-left mt-3">
+                  {dataSetDescription}
+                </Typography>
+              </Box>
+              <Box className={mobile ? "" : "ml-134"}>
+                {/* <Box className="text-left">
               <div className="type_dataset">Public dataset</div>
             </Box> */}
-              <Typography
-                className={`view_datasets_light_text text-left ${
-                  mobile ? "mt-25" : ""
-                }`}
-              >
-                Data Capture Interval
-              </Typography>
-              <Typography className="view_datasets_bold_text text-left mt-3">
-                {fromDate !== "NA" && toDate !== "NA"
-                  ? dateTimeFormat(fromDate) + " - " + dateTimeFormat(toDate)
-                  : "Not Available"}
-              </Typography>
-              <Typography className="view_datasets_light_text text-left mt-25">
-                Geography
-              </Typography>
-              <Typography className="view_datasets_bold_text text-left mt-3 ellipsis maxWidth400">
-                {/* IF GEOGRAPHY COUNTRY SAATE AND CITY ALL ARE "NA" THEN SHOW "Not Available" */}
-                {!geography?.country?.name &&
-                !geography?.state?.name &&
-                !geography?.city?.name
-                  ? "Not Available"
-                  : ""}
-                {geography?.country?.name
-                  ? geography?.country?.name + ", "
-                  : ""}
-                {geography?.state?.name ? geography?.state?.name + ", " : ""}
-                {geography?.city?.name ? geography?.city?.name : ""}
-              </Typography>
-              <Typography className="view_datasets_light_text text-left mt-25">
-                Constantly updating{" "}
-              </Typography>
-              <Typography className="view_datasets_bold_text text-left mt-3">
-                {isUpdating ? "Yes" : "No"}
-              </Typography>
+                <Typography
+                  className={`view_datasets_light_text text-left ${
+                    mobile ? "mt-25" : ""
+                  }`}
+                >
+                  Data Capture Interval
+                </Typography>
+                <Typography className="view_datasets_bold_text text-left mt-3">
+                  {fromDate !== "NA" && toDate !== "NA"
+                    ? dateTimeFormat(fromDate) + " - " + dateTimeFormat(toDate)
+                    : "Not Available"}
+                </Typography>
+                <Typography className="view_datasets_light_text text-left mt-25">
+                  Geography
+                </Typography>
+                <Typography className="view_datasets_bold_text text-left mt-3 ellipsis maxWidth400">
+                  {/* IF GEOGRAPHY COUNTRY SAATE AND CITY ALL ARE "NA" THEN SHOW "Not Available" */}
+                  
+                  {/* {Fname} */}
+
+                  <button onClick={()=>triggerPopulatedonwloadedJSON2(geography)}>
+                    triggerPopulatedonwloadedJSON2
+                  </button>
+                  <br></br>
+
+                  {!geography?.country?.name &&
+                  !geography?.state?.name &&
+                  !geography?.city?.name
+                    ? "Not Available"
+                    : ""}
+                  {geography?.country?.name
+                    ? geography?.country?.name + ", "
+                    : ""}
+                  {geography?.state?.name ? geography?.state?.name + ", " : ""}
+                  {geography?.city?.name ? geography?.city?.name : ""}
+                </Typography>
+                <Typography className="view_datasets_light_text text-left mt-25">
+                  Constantly updating{" "}
+                </Typography>
+                <Typography className="view_datasets_bold_text text-left mt-3">
+                  {isUpdating ? "Yes" : "No"}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-          <div className="bold_title mt-50">
-            {categories && categories.length ? "Dataset category" : ""}
-          </div>
-          <Box className="mt-20">
-            <ControlledAccordion
-              isCustomStyle={true}
-              titleStyle={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                width: "100%",
-                maxWidth: "800px",
-              }}
-              isCustomDetailStyle={true}
-              customDetailsStyle={{
-                wordBreak: "break-all",
-                maxWidth: "33%",
-                textAlign: "left",
-                width: "30%",
-                display: "inline-block",
-                marginBottom: "15px",
-              }}
-              data={categories}
-            />
-          </Box>
-          <div className="bold_title mt-50">{"Dataset files"}</div>
-          <Alert
-            severity="warning"
-            className="view_datasets_light_text text-left mt-20"
-          >
-            <span className="view_datasets_bold_text">Note: </span>This dataset
-            is solely meant to be used as a source of information. Even through
-            accuracy is the goal, the steward is not accountable for the
-            information. Please let the admin know if you have any information
-            you think is inaccurate.
-          </Alert>
-          <Box className="mt-20">
-            <ControlledAccordion
-              data={files}
-              emptyMessage={"No dataset files uploaded"}
-              isTables={true}
-              shouldAlwaysOpen={true}
-            />
-          </Box>
-          <Divider className="mt-50" />
-          {history.location?.state?.tab === "my_organisation" &&
-          userType !== "guest" ? (
-            <>
-              <RequestCardForApprovalOrReject
-                data={allDatasets}
-                setApprovalStatus={setApprovalStatus}
-                approvalStatus={approvalStatus}
-              />
-              {/* <Divider className="mt-50" /> */}
-            </>
-          ) : (
-            <></>
-          )}
-          {history.location?.state?.tab !== "my_organisation" && (
             <div className="bold_title mt-50">
-              {"Organisation Details"}
-              <Typography
-                className={`${GlobalStyle.textDescription} text-left ${GlobalStyle.bold400} ${GlobalStyle.highlighted_text}`}
-              >
-                Details of the organization that owns the dataset.
-              </Typography>
+              {categories && categories.length ? "Dataset category" : ""}
             </div>
-          )}
-          {history.location?.state?.tab !== "my_organisation" && (
-            <Box>
-              <Card className="organisation_icon_card">
-                <Box className="d-flex h-100 align-items-center">
-                  {orgDetails?.logo ? (
-                    <img
-                      style={{ width: "100%" }}
-                      src={orgDetails?.logo}
-                      alt="footerLogo"
-                    />
-                  ) : (
-                    <img
-                      style={{ width: "100%" }}
-                      src={require("../../Assets/Img/footer_logo.svg")}
-                      alt="footerLogo"
-                    />
-                  )}
-                </Box>
-              </Card>
-
-              <Row className="">
-                <Col xl={4} lg={4} md={4} sm={6} className="text-left mt-30">
-                  <Typography className="view_datasets_light_text">
-                    Organisation name
-                  </Typography>
-                  <Typography
-                    className={
-                      mobile
-                        ? "view_datasets_bold_text_sm"
-                        : "view_datasets_bold_text break_word"
-                    }
-                  >
-                    {orgDetails?.name}
-                  </Typography>
-                </Col>
-                {/* <hr /> */}
-                <Col xl={4} lg={4} md={4} sm={6} className="text-left mt-30">
-                  <Typography className="view_datasets_light_text">
-                    Organisation address
-                  </Typography>
-                  <Typography
-                    className={
-                      mobile
-                        ? "view_datasets_bold_text_sm"
-                        : "view_datasets_bold_text break_word"
-                    }
-                  >
-                    {orgAddress}
-                  </Typography>
-                </Col>
-                <Col xl={4} lg={4} md={6} sm={6} className={`text-left mt-30`}>
-                  <Typography className="view_datasets_light_text">
-                    Root user details
-                  </Typography>
-                  <Typography
-                    className={
-                      mobile
-                        ? "view_datasets_bold_text_sm"
-                        : "view_datasets_bold_text break_word"
-                    }
-                  >
-                    {userDetails?.first_name + " " + userDetails?.last_name}
-                  </Typography>
-                  <Typography
-                    className={
-                      mobile
-                        ? "view_datasets_bold_text_sm"
-                        : "view_datasets_bold_text break_word"
-                    }
-                  >
-                    {userDetails?.email}
-                  </Typography>
-                </Col>
-              </Row>
+            <Box className="mt-20">
+              <ControlledAccordion
+                isCustomStyle={true}
+                titleStyle={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  width: "100%",
+                  maxWidth: "800px",
+                }}
+                isCustomDetailStyle={true}
+                customDetailsStyle={{
+                  wordBreak: "break-all",
+                  maxWidth: "33%",
+                  textAlign: "left",
+                  width: "30%",
+                  display: "inline-block",
+                  marginBottom: "15px",
+                }}
+                data={categories}
+              />
             </Box>
-          )}
-          <Divider className="mt-50" />
-
-          <div className="d-flex justify-content-end mt-50">
-            <Button
-              sx={{
-                fontFamily: "Arial",
-                fontWeight: 700,
-                fontSize: "16px",
-                width: mobile ? "145px" : "171px",
-                height: "48px",
-                border: "1px solid rgba(0, 171, 85, 0.48)",
-                borderRadius: "8px",
-                color: "#00A94F",
-                textTransform: "none",
-                marginLeft: "100px",
-                "&:hover": {
-                  background: "none",
-                  border: "1px solid rgba(0, 171, 85, 0.48)",
-                },
-              }}
-              variant="outlined"
-              onClick={() => history.goBack()}
+            <div className="bold_title mt-50">{"Dataset files"}</div>
+            <Alert
+              severity="warning"
+              className="view_datasets_light_text text-left mt-20"
             >
-              Back
-            </Button>
-          </div>
+              <span className="view_datasets_bold_text">Note: </span>This
+              dataset is solely meant to be used as a source of information.
+              Even through accuracy is the goal, the steward is not accountable
+              for the information. Please let the admin know if you have any
+              information you think is inaccurate.
+            </Alert>
+
+            <div>
+              {donwloadedJSON !== null && (
+                <>
+                  <KALRODataVizualiztions donwloadedJSON={donwloadedJSON} />
+                </>
+              )}
+
+              <Dashboard user_county={geography?.state?.name ? geography?.state?.name  : ""} geography={geography}></Dashboard>
+            </div>
+            <Box className="mt-20">
+              {/* {JSON.stringify(files)} */}
+              <ControlledAccordion
+                data={files}
+                emptyMessage={"No dataset files uploaded"}
+                isTables={true}
+                shouldAlwaysOpen={true}
+              />
+            </Box>
+            <Divider className="mt-50" />
+            {history.location?.state?.tab === "my_organisation" &&
+            userType !== "guest" ? (
+              <>
+                <RequestCardForApprovalOrReject
+                  data={allDatasets}
+                  setApprovalStatus={setApprovalStatus}
+                  approvalStatus={approvalStatus}
+                />
+                {/* <Divider className="mt-50" /> */}
+              </>
+            ) : (
+              <></>
+            )}
+            {history.location?.state?.tab !== "my_organisation" && (
+              <div className="bold_title mt-50">
+                {"Organisation Details"}
+                <Typography
+                  className={`${GlobalStyle.textDescription} text-left ${GlobalStyle.bold400} ${GlobalStyle.highlighted_text}`}
+                >
+                  Details of the organization that owns the dataset.
+                </Typography>
+              </div>
+            )}
+            {history.location?.state?.tab !== "my_organisation" && (
+              <Box>
+                <Card className="organisation_icon_card">
+                  <Box className="d-flex h-100 align-items-center">
+                    {orgDetails?.logo ? (
+                      <img
+                        style={{ width: "100%" }}
+                        src={orgDetails?.logo}
+                        alt="footerLogo"
+                      />
+                    ) : (
+                      <img
+                        style={{ width: "100%" }}
+                        src={require("../../Assets/Img/footer_logo.svg")}
+                        alt="footerLogo"
+                      />
+                    )}
+                  </Box>
+                </Card>
+
+                <Row className="">
+                  <Col xl={4} lg={4} md={4} sm={6} className="text-left mt-30">
+                    <Typography className="view_datasets_light_text">
+                      Organisation name
+                    </Typography>
+                    <Typography
+                      className={
+                        mobile
+                          ? "view_datasets_bold_text_sm"
+                          : "view_datasets_bold_text break_word"
+                      }
+                    >
+                      {orgDetails?.name}
+                    </Typography>
+                  </Col>
+                  {/* <hr /> */}
+                  <Col xl={4} lg={4} md={4} sm={6} className="text-left mt-30">
+                    <Typography className="view_datasets_light_text">
+                      Organisation address
+                    </Typography>
+                    <Typography
+                      className={
+                        mobile
+                          ? "view_datasets_bold_text_sm"
+                          : "view_datasets_bold_text break_word"
+                      }
+                    >
+                      {orgAddress}
+                    </Typography>
+                  </Col>
+                  <Col
+                    xl={4}
+                    lg={4}
+                    md={6}
+                    sm={6}
+                    className={`text-left mt-30`}
+                  >
+                    <Typography className="view_datasets_light_text">
+                      Root user details
+                    </Typography>
+                    <Typography
+                      className={
+                        mobile
+                          ? "view_datasets_bold_text_sm"
+                          : "view_datasets_bold_text break_word"
+                      }
+                    >
+                      {userDetails?.first_name + " " + userDetails?.last_name}
+                    </Typography>
+                    <Typography
+                      className={
+                        mobile
+                          ? "view_datasets_bold_text_sm"
+                          : "view_datasets_bold_text break_word"
+                      }
+                    >
+                      {userDetails?.email}
+                    </Typography>
+                  </Col>
+                </Row>
+              </Box>
+            )}
+            <Divider className="mt-50" />
+
+            <div className="d-flex justify-content-end mt-50">
+              <Button
+                sx={{
+                  fontFamily: "Arial",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  width: mobile ? "145px" : "171px",
+                  height: "48px",
+                  border: "1px solid rgba(0, 171, 85, 0.48)",
+                  borderRadius: "8px",
+                  color: "#00A94F",
+                  textTransform: "none",
+                  marginLeft: "100px",
+                  "&:hover": {
+                    background: "none",
+                    border: "1px solid rgba(0, 171, 85, 0.48)",
+                  },
+                }}
+                variant="outlined"
+                onClick={() => history.goBack()}
+              >
+                Back
+              </Button>
+            </div>
+          </Box>
         </Box>
-      </Box>
-    )
+      )}
+    </>
   );
 };
 

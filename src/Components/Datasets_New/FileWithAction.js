@@ -28,6 +28,8 @@ const FileWithAction = ({
   isOther,
   userType,
   fileSize,
+  setDownloadedJSON,
+  
 }) => {
   const { callLoader, callToast } = useContext(FarmStackContext);
   const history = useHistory();
@@ -37,6 +39,36 @@ const FileWithAction = ({
   const tablet = useMediaQuery(theme.breakpoints.down("md"));
   const miniLaptop = useMediaQuery(theme.breakpoints.down("lg"));
 
+  // Function to convert CSV to JSON
+// Function to convert CSV to JSON
+function convertCSVToJson(csv) {
+  // Parse the CSV content into an array of objects
+  const lines = csv.split('\n');
+  const result = [];
+  const headers = lines[0].split(',').map(header => header.trim()); // Trim headers
+  for (let i = 1; i < lines.length; i++) {
+      const currentLine = lines[i];
+      if (currentLine.trim() !== '') { // Check if line is not empty
+          const obj = {};
+          const fields = currentLine.split(',').map(field => field.trim()); // Trim fields
+          for (let j = 0; j < headers.length; j++) {
+              // obj[headers[j]] = fields[j] ?? ''; // Handle undefined fields
+
+              if(fields[j] === undefined){
+
+              }else{
+            obj[headers[j]] = fields[j].replace(/^"(.*)"$/, '$1');
+
+              }
+
+          }
+
+          
+          result.push(obj);
+      }
+  }
+  return result;
+}
   const datasetDownloader = (fileUrl, name, type) => {
     let accessToken = getTokenLocal() ?? false;
     fetch(fileUrl, {
@@ -46,16 +78,33 @@ const FileWithAction = ({
       },
     })
       .then((response) => response.blob())
+      // console.log({response})
+
       .then((blob) => {
+        console.log({blob})
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const content = event.target.result;
+            console.log(content); // This will log the content of the Blob as text
+            
+            // Convert CSV content to JSON
+            const jsonContent = convertCSVToJson(content);
+            setDownloadedJSON(jsonContent)
+            console.log(jsonContent); // This will log the JSON content
+            // You can further process the JSON content as needed
+        };
+        reader.readAsText(blob);
+      
         callLoader(false);
         callToast("File downloaded successfully!", "success", true);
         // Create a temporary link element
         const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = name; // Set the desired file name here
 
-        // Simulate a click event to download the file
-        link.click();
+        // link.href = URL.createObjectURL(blob);
+        // link.download = name; // Set the desired file name here
+
+        // // Simulate a click event to download the file
+        // link.click();
 
         // Clean up the object URL
         URL.revokeObjectURL(link.href);
@@ -71,6 +120,8 @@ const FileWithAction = ({
   };
 
   const handleDownload = () => {
+    // alert(0)
+    // return 0
     let accessToken = getTokenLocal() ?? false;
     let url = UrlConstant.base_url + UrlConstant.download_file + id;
     callLoader(true);
@@ -290,7 +341,9 @@ const FileWithAction = ({
             },
           }}
           variant="outlined"
-          onClick={() => handleButtonClick()}
+          // onClick={() => handleButtonClick()}
+          onClick={() => setDownloadedJSON()}
+
         >
           {userType !== "guest"
             ? fileType === "public" || fileType === "registered" || !isOther

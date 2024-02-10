@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "name": "Camel"
+    },
+    {
+      "id": 2,
+      "name": "Camels"
+    },
+    {
+      "id": 3,
+      "name": "Cattle"
+    },
+    {
+      "id": 4,
+      "name": "Equine"
+    },
+    {
+      "id": 5,
+      "name": "Equines"
+    },
+    {
+      "id": 6,
+      "name": "Goat"
+    },
+    {
+      "id": 7,
+      "name": "Goats"
+    },
+    {
+      "id": 8,
+      "name": "Pig"
+    },
+    {
+      "id": 9,
+      "name": "Pigs"
+    },
+    {
+      "id": 10,
+      "name": "Poultry"
+    },
+    {
+      "id": 11,
+      "name": "Rabbit"
+    },
+    {
+      "id": 12,
+      "name": "Rabbits"
+    },
+    {
+      "id": 13,
+      "name": "Sericulture"
+    },
+    {
+      "id": 14,
+      "name": "Sheep"
+    }
+  ]

@@ -1,0 +1,538 @@
+[
+    {
+      "id": 1,
+      "name": "Aberdeen angus"
+    },
+    {
+      "id": 2,
+      "name": "Aberdeen angus cattle"
+    },
+    {
+      "id": 3,
+      "name": "Angora"
+    },
+    {
+      "id": 4,
+      "name": "Angora rex rabbit"
+    },
+    {
+      "id": 5,
+      "name": "Ayrshi"
+    },
+    {
+      "id": 6,
+      "name": "Ayrshire cattle"
+    },
+    {
+      "id": 7,
+      "name": "Black Persian sheep"
+    },
+    {
+      "id": 8,
+      "name": "Blackhead"
+    },
+    {
+      "id": 9,
+      "name": "Blackhead sheep"
+    },
+    {
+      "id": 10,
+      "name": "Boer"
+    },
+    {
+      "id": 11,
+      "name": "Boer Goat"
+    },
+    {
+      "id": 12,
+      "name": "Boran"
+    },
+    {
+      "id": 13,
+      "name": "Boran cattle"
+    },
+    {
+      "id": 14,
+      "name": "Broiler Chicken"
+    },
+    {
+      "id": 15,
+      "name": "Brown swiss"
+    },
+    {
+      "id": 16,
+      "name": "Brown swiss cattle"
+    },
+    {
+      "id": 17,
+      "name": "Califonian white"
+    },
+    {
+      "id": 18,
+      "name": "Californian white rabbit"
+    },
+    {
+      "id": 19,
+      "name": "Charolais"
+    },
+    {
+      "id": 20,
+      "name": "Charolais cattle"
+    },
+    {
+      "id": 21,
+      "name": "Chicken -Broilers"
+    },
+    {
+      "id": 22,
+      "name": "Chicken -Indigenous"
+    },
+    {
+      "id": 23,
+      "name": "Chicken -Layers"
+    },
+    {
+      "id": 24,
+      "name": "Chinchilla rabbit"
+    },
+    {
+      "id": 25,
+      "name": "Chinchillia"
+    },
+    {
+      "id": 26,
+      "name": "Corriedale"
+    },
+    {
+      "id": 27,
+      "name": "Corriedale sheep"
+    },
+    {
+      "id": 28,
+      "name": "Cross breed Cattle"
+    },
+    {
+      "id": 29,
+      "name": "Dexter"
+    },
+    {
+      "id": 30,
+      "name": "Dexter cattle"
+    },
+    {
+      "id": 31,
+      "name": "Donkey"
+    },
+    {
+      "id": 32,
+      "name": "Donkeys"
+    },
+    {
+      "id": 33,
+      "name": "Dorper"
+    },
+    {
+      "id": 34,
+      "name": "Dorper sheep"
+    },
+    {
+      "id": 35,
+      "name": "Dorset Horn"
+    },
+    {
+      "id": 36,
+      "name": "Ducks"
+    },
+    {
+      "id": 37,
+      "name": "Duroc"
+    },
+    {
+      "id": 38,
+      "name": "Duroc pig"
+    },
+    {
+      "id": 39,
+      "name": "Dutch"
+    },
+    {
+      "id": 40,
+      "name": "Dutch Rabbit"
+    },
+    {
+      "id": 41,
+      "name": "Ear lope"
+    },
+    {
+      "id": 42,
+      "name": "Ear lope rabbit"
+    },
+    {
+      "id": 43,
+      "name": "Exotic"
+    },
+    {
+      "id": 44,
+      "name": "Fleckvieh"
+    },
+    {
+      "id": 45,
+      "name": "Fleckvieh cattle"
+    },
+    {
+      "id": 46,
+      "name": "Flemish giant"
+    },
+    {
+      "id": 47,
+      "name": "Flemish giant Rabbit"
+    },
+    {
+      "id": 48,
+      "name": "Freisian"
+    },
+    {
+      "id": 49,
+      "name": "Friesian cattle"
+    },
+    {
+      "id": 50,
+      "name": "Gabbra Camels"
+    },
+    {
+      "id": 51,
+      "name": "Galla"
+    },
+    {
+      "id": 52,
+      "name": "Galla Goat"
+    },
+    {
+      "id": 53,
+      "name": "Gallow"
+    },
+    {
+      "id": 54,
+      "name": "Galloway cattle"
+    },
+    {
+      "id": 55,
+      "name": "Geese"
+    },
+    {
+      "id": 56,
+      "name": "Guerns"
+    },
+    {
+      "id": 57,
+      "name": "Guernsey cattle"
+    },
+    {
+      "id": 58,
+      "name": "Guinea fowl"
+    },
+    {
+      "id": 59,
+      "name": "Hair sheep"
+    },
+    {
+      "id": 60,
+      "name": "Hampshire"
+    },
+    {
+      "id": 61,
+      "name": "Hampshire down"
+    },
+    {
+      "id": 62,
+      "name": "Hampshire pig"
+    },
+    {
+      "id": 63,
+      "name": "Hampshire sheep"
+    },
+    {
+      "id": 64,
+      "name": "Hereford"
+    },
+    {
+      "id": 65,
+      "name": "Hereford cattle"
+    },
+    {
+      "id": 66,
+      "name": "Horses"
+    },
+    {
+      "id": 67,
+      "name": "Improved Kienyeji"
+    },
+    {
+      "id": 68,
+      "name": "Indigenous Chicken"
+    },
+    {
+      "id": 69,
+      "name": "Jersey"
+    },
+    {
+      "id": 70,
+      "name": "Jersey cattle"
+    },
+    {
+      "id": 71,
+      "name": "Kenyan Alpine"
+    },
+    {
+      "id": 72,
+      "name": "Kenyan Alpine goat"
+    },
+    {
+      "id": 73,
+      "name": "Land race"
+    },
+    {
+      "id": 74,
+      "name": "Land race pig"
+    },
+    {
+      "id": 75,
+      "name": "Large white"
+    },
+    {
+      "id": 76,
+      "name": "Large white pig"
+    },
+    {
+      "id": 77,
+      "name": "Layer Chicken"
+    },
+    {
+      "id": 78,
+      "name": "Meat g"
+    },
+    {
+      "id": 79,
+      "name": "Merino"
+    },
+    {
+      "id": 80,
+      "name": "Merino sheep"
+    },
+    {
+      "id": 81,
+      "name": "Mules"
+    },
+    {
+      "id": 82,
+      "name": "New Zealand white"
+    },
+    {
+      "id": 83,
+      "name": "New Zealand white Rabbit"
+    },
+    {
+      "id": 84,
+      "name": "None"
+    },
+    {
+      "id": 85,
+      "name": "Ostriches"
+    },
+    {
+      "id": 86,
+      "name": "Other"
+    },
+    {
+      "id": 87,
+      "name": "Other Camel"
+    },
+    {
+      "id": 88,
+      "name": "Other cattle"
+    },
+    {
+      "id": 89,
+      "name": "Other Dual Cattle"
+    },
+    {
+      "id": 90,
+      "name": "Other equine"
+    },
+    {
+      "id": 91,
+      "name": "Other Exotic Beef"
+    },
+    {
+      "id": 92,
+      "name": "Other Exotic Dairy"
+    },
+    {
+      "id": 93,
+      "name": "Other Goat"
+    },
+    {
+      "id": 94,
+      "name": "Other Indigenous"
+    },
+    {
+      "id": 95,
+      "name": "Other pig"
+    },
+    {
+      "id": 96,
+      "name": "Other poultry"
+    },
+    {
+      "id": 97,
+      "name": "Other Poulty"
+    },
+    {
+      "id": 98,
+      "name": "Other Rabbit"
+    },
+    {
+      "id": 99,
+      "name": "Other sericulture"
+    },
+    {
+      "id": 100,
+      "name": "Other Sheep"
+    },
+    {
+      "id": 101,
+      "name": "Pakista"
+    },
+    {
+      "id": 102,
+      "name": "Pakistan Camels"
+    },
+    {
+      "id": 103,
+      "name": "Pigeons"
+    },
+    {
+      "id": 104,
+      "name": "Pigs"
+    },
+    {
+      "id": 105,
+      "name": "Quails"
+    },
+    {
+      "id": 106,
+      "name": "Red Maasai"
+    },
+    {
+      "id": 107,
+      "name": "Red Maasai sheep"
+    },
+    {
+      "id": 108,
+      "name": "Red poll"
+    },
+    {
+      "id": 109,
+      "name": "Red poll cattle"
+    },
+    {
+      "id": 110,
+      "name": "Rendille Camels Somali Camels Turkana Camels"
+    },
+    {
+      "id": 111,
+      "name": "Rendille/Gabbra"
+    },
+    {
+      "id": 112,
+      "name": "Romney mash"
+    },
+    {
+      "id": 113,
+      "name": "Romney mash sheep"
+    },
+    {
+      "id": 114,
+      "name": "Saanen"
+    },
+    {
+      "id": 115,
+      "name": "Saanen Goat"
+    },
+    {
+      "id": 116,
+      "name": "Sahiwa"
+    },
+    {
+      "id": 117,
+      "name": "Sahiwal cattle"
+    },
+    {
+      "id": 118,
+      "name": "Santa getrudis"
+    },
+    {
+      "id": 119,
+      "name": "Santa getrudis cattle"
+    },
+    {
+      "id": 120,
+      "name": "Silkworms"
+    },
+    {
+      "id": 121,
+      "name": "Simmental"
+    },
+    {
+      "id": 122,
+      "name": "Simmental cattle"
+    },
+    {
+      "id": 123,
+      "name": "Small East African Goats"
+    },
+    {
+      "id": 124,
+      "name": "Snails"
+    },
+    {
+      "id": 125,
+      "name": "Somali Camel"
+    },
+    {
+      "id": 126,
+      "name": "Somali Goat"
+    },
+    {
+      "id": 127,
+      "name": "Southdown"
+    },
+    {
+      "id": 128,
+      "name": "Southdown sheep"
+    },
+    {
+      "id": 129,
+      "name": "Toggen burg"
+    },
+    {
+      "id": 130,
+      "name": "Toggenburg goat"
+    },
+    {
+      "id": 131,
+      "name": "Turkana"
+    },
+    {
+      "id": 132,
+      "name": "Turkeys"
+    },
+    {
+      "id": 133,
+      "name": "Zebu"
+    },
+    {
+      "id": 134,
+      "name": "Zebu cattle"
+    }
+  ]

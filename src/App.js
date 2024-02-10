@@ -57,7 +57,10 @@ import "./Constants/CssConstants.css";
 import "./Views/Connector/ConnectorParticipant.css";
 import "./Views/Dataset/DatasetFilter.css";
 import "./Views/GuestUser/GuestUserHome.css";
-
+import { Provider } from "react-redux";
+import rootStore from "./app-redux/store";
+// import {Chart, ArcElement} from 'chart.js'
+// Chart.register(ArcElement);
 const Datahub = lazy(() => import("./Layout/Datahub"));
 const Participant = lazy(() => import("./Layout/Participant"));
 const OnBoarding = lazy(() => import("./Views/Pages/HomeScreen/OnBoarding"));
@@ -115,6 +118,8 @@ function App() {
     getAdminData();
   }, []);
   return (
+    <>
+    <Provider store={rootStore}>
     <React.Fragment>
       {isLoading ? <Loader /> : ""}
       {toastDetail.status ? (
@@ -152,6 +157,9 @@ function App() {
         </Router>
       </Suspense>
     </React.Fragment>
+    </Provider>
+    </>
+    
   );
 }
 
