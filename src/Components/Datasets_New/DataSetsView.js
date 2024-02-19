@@ -46,20 +46,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOfflineLocalStorage } from "./OfflineStorage";
 // import { END_POINT } from "./KalroUrls";
 // import END_POINT from "./KalroUrls";
-const KALRO_URL  = "https://kiamisapi.kalro.org/api/"
+const KALRO_URL = "https://kiamisapi.kalro.org/api/";
 
-const  END_POINT={  
-  county_data_stats:`${KALRO_URL}/county_data_stats`,
-  crop_data:`${KALRO_URL}/crops_data`
-}
+const END_POINT = {
+  county_data_stats: `${KALRO_URL}/county_data_stats`,
+  crop_data: `${KALRO_URL}/crops_data`,
+};
 const DataSetsView = (props) => {
   const dispatch = useDispatch();
 
   const appData = useSelector((state) => state.appData);
   const { county_stats_merged, ward_data_merged } = appData;
 
-  const { data: county_stats_merged_data, } =
-    county_stats_merged;
+  const { data: county_stats_merged_data } = county_stats_merged;
 
   const { userType, breadcrumbFromRoute } = props;
   const history = useHistory();
@@ -118,7 +117,6 @@ const DataSetsView = (props) => {
   // const [categorises, setCategorises] = useState({})
   const [geography, setGeography] = useState();
   const [Fname, SetFname] = useState("Daniel");
-
 
   // Organisation & User Details
   const [orgDetails, setOrgDetails] = useState();
@@ -226,9 +224,11 @@ const DataSetsView = (props) => {
             : { country: null, state: null, city: null }
         );
 
-        getCountyStats(Object.keys(response.data?.geography).length
-        ? response.data?.geography
-        : { country: null, state: null, city: null })
+        getCountyStats(
+          Object.keys(response.data?.geography).length
+            ? response.data?.geography
+            : { country: null, state: null, city: null }
+        );
         setIsUpdating(response.data.constantly_update);
         setFromDate(
           response.data.data_capture_start
@@ -274,9 +274,29 @@ const DataSetsView = (props) => {
                 : [];
             prepareFilesContent.push(
               <Box>
+                {donwloadedJSON !== null && (
+                  <>
+                    {userType !== "guest" && (
+                      <>
+                        <Dashboard
+                          usagePolicy={tempFile.usage_policy}
+                          user_county={
+                            geography?.state?.name ? geography?.state?.name : ""
+                          }
+                          geography={geography}
+                        ></Dashboard>
+
+                        <KALRODataVizualiztions
+                          usagePolicy={tempFile.usage_policy}
+                          donwloadedJSON={donwloadedJSON}
+                        />
+                      </>
+                    )}
+                  </>
+                )}
+
                 <Box className="d-flex">
                   <FileWithAction
-                  
                     setDownloadedJSON={triggerPopulatedonwloadedJSON}
                     index={index}
                     datasetId={response?.data?.id}
@@ -452,7 +472,6 @@ const DataSetsView = (props) => {
       });
   };
 
-  
   const handleClose = () => {
     SetShowModal(false);
   };
@@ -475,43 +494,39 @@ const DataSetsView = (props) => {
     getDataset();
   }, [id, approvalStatus]);
 
-
-  const getCountyStats=(data)=>{
-    let user_county = data.state.name
-    console.log(`getting stats for ${user_county}`)
+  const getCountyStats = (data) => {
+    let user_county = data.state.name;
+    console.log(`getting stats for ${user_county}`);
 
     if (county_stats_merged_data === null && user_county) {
-      dispatch(getCountyStats_Merged({ county: user_county })).unwrap()
-      .then((res)=>{
-        setOfflineLocalStorage("@CountyStats_Merged", res);
-      })
-    
-    }else{
-   
+      dispatch(getCountyStats_Merged({ county: user_county }))
+        .unwrap()
+        .then((res) => {
+          setOfflineLocalStorage("@CountyStats_Merged", res);
+        });
+    } else {
     }
-  }
+  };
 
-
-
-  const triggerPopulatedonwloadedJSON2 = async(data) => {
-      // console.log(data)
-      let count_name = data.state.name
-      // console.log(END_POINT)
-      const res = await AxiosGetService(`${END_POINT.county_data_stats}?county=${count_name}`)
-      console(res)
-    
+  const triggerPopulatedonwloadedJSON2 = async (data) => {
+    // console.log(data)
+    let count_name = data.state.name;
+    // console.log(END_POINT)
+    const res = await AxiosGetService(
+      `${END_POINT.county_data_stats}?county=${count_name}`
+    );
+    console(res);
   };
 
   const triggerPopulatedonwloadedJSON = (data, state = true) => {
     // setDownloadedJSON(data);
     setTimeout(() => {
-      console.log(Fname)
+      console.log(Fname);
     }, 3000);
     // setGeography2("geography")
     // let count_name = geography?.state?.name ? geography?.state?.name + ", " : "--"
 
     // alert(count_name)
-    
   };
 
   // console.log({geography})
@@ -777,13 +792,13 @@ const DataSetsView = (props) => {
                 </Typography>
                 <Typography className="view_datasets_bold_text text-left mt-3 ellipsis maxWidth400">
                   {/* IF GEOGRAPHY COUNTRY SAATE AND CITY ALL ARE "NA" THEN SHOW "Not Available" */}
-                  
+
                   {/* {Fname} */}
 
-                  <button onClick={()=>triggerPopulatedonwloadedJSON2(geography)}>
+                  {/* <button onClick={()=>triggerPopulatedonwloadedJSON2(geography)}>
                     triggerPopulatedonwloadedJSON2
-                  </button>
-                  <br></br>
+                  </button> */}
+                  {/* <br></br> */}
 
                   {!geography?.country?.name &&
                   !geography?.state?.name &&
@@ -841,15 +856,6 @@ const DataSetsView = (props) => {
               information you think is inaccurate.
             </Alert>
 
-            <div>
-              {donwloadedJSON !== null && (
-                <>
-                  <KALRODataVizualiztions donwloadedJSON={donwloadedJSON} />
-                </>
-              )}
-
-              <Dashboard user_county={geography?.state?.name ? geography?.state?.name  : ""} geography={geography}></Dashboard>
-            </div>
             <Box className="mt-20">
               {/* {JSON.stringify(files)} */}
               <ControlledAccordion

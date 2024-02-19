@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { countGenders, getCOlumnsFromArray } from "./KalroUtils";
 
 import { Pie } from "react-chartjs-2";
@@ -35,15 +35,38 @@ function CustomToolbar() {
     );
   }
 
-function KALRODataVizualiztions({ donwloadedJSON }) {
+function KALRODataVizualiztions({ donwloadedJSON ,usagePolicy}) {
   let genders_data = donwloadedJSON ? countGenders(donwloadedJSON) : null;
   let columns = donwloadedJSON ? getCOlumnsFromArray(donwloadedJSON) : null;
+  const [showFiltersAndData,SetShowFiltersAndData]=useState(null)
   //   let data = ;
+
+  useEffect(()=>{
+      if (usagePolicy?.[0]) {
+        if (usagePolicy[0].approval_status === "requested") {
+
+          SetShowFiltersAndData(false)
+        } else if (usagePolicy[0].approval_status === "approved") {
+          SetShowFiltersAndData(true)
+
+        } else if (usagePolicy[0].approval_status === "rejected") {
+          SetShowFiltersAndData(false)
+
+        }
+      } else {
+        SetShowFiltersAndData(false)
+        
+      }
+  },[])
 
   return (
     <>
-    {/* {JSON.stringify(columns)} */}
-      <div className="container-fluid mt-5 p-3">
+
+    {showFiltersAndData &&
+    
+    <>
+    
+    <div className="container-fluid mt-5 p-3">
         <div className="row gy-5">
           <div className="col rounded-lg shadow-lg p-3">
             <h4>{donwloadedJSON.length.toLocaleString()}</h4>
@@ -110,6 +133,8 @@ function KALRODataVizualiztions({ donwloadedJSON }) {
       <>
     
       </>
+    </>}
+    
     </>
   );
 }

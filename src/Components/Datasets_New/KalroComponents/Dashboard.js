@@ -6,8 +6,10 @@ import WardSelect from "./pagecomponents/WardSelect";
 import SubCountySelect from "./pagecomponents/SubCountySelect";
 import { getWardData_Merged } from "../../../app-redux/features/appData/appDataSlice";
 
-function Dashboard({user_county,geography}) {
+function Dashboard({ user_county, geography, usagePolicy }) {
   const dispatch = useDispatch();
+  const [showFiltersAndData, SetShowFiltersAndData] = useState(null);
+
   const appData = useSelector((state) => state.appData);
   const [dataSelected, SetDataSelected] = useState(null);
   const { county_stats_merged } = appData;
@@ -30,7 +32,6 @@ function Dashboard({user_county,geography}) {
     SetWardSelected(null);
   };
 
-
   const triggerQueryData = (dataPassed) => {
     let data = JSON.parse(dataPassed);
     if (dataSelected !== null) {
@@ -44,67 +45,86 @@ function Dashboard({user_county,geography}) {
     }
   };
 
+  useEffect(() => {
+    if (usagePolicy?.[0]) {
+      if (usagePolicy[0].approval_status === "requested") {
+        SetShowFiltersAndData(false);
+      } else if (usagePolicy[0].approval_status === "approved") {
+        SetShowFiltersAndData(true);
+      } else if (usagePolicy[0].approval_status === "rejected") {
+        SetShowFiltersAndData(false);
+      }
+    } else {
+      SetShowFiltersAndData(false);
+    }
+  }, []);
+
   return (
     <div>
+    {showFiltersAndData &&
+      
+      <>
+      
+      </>
+      }
+      {/* user_county {JSON.stringify(geography)} */}
+      {/* {user_county} */}
+      {loadin_county_stats_merged && (
+        <>
+          <div
+            className="mt-8 w-full px-6 py-6 mx-auto"
+            style={{ marginTop: 10 }}
+          >
+            <p className="text-black">
+              Please wait. Loading county stats and data. This usually happens
+              once
+            </p>
+          </div>
+        </>
+      )}
 
-{/* user_county {JSON.stringify(geography)} */}
-     {/* {user_county} */}
-        {loadin_county_stats_merged && (
-          <>
-            <div
-              className="mt-8 w-full px-6 py-6 mx-auto"
-              style={{ marginTop: 10 }}
-            >
-              <p className="text-black">
-                Please wait. Loading county stats and data. This usually happens
-                once
-              </p>
+      {county_stats_merged_data !== null && (
+        <>
+          <div className="flex bg-white w-[50%] rounded-lg">
+            <div className="p-2 w-[50%]">
+              {/* user_county {JSON.stringify(geography)} */}
+
+              <SubCountySelect
+                triggerQueryData={triggerQueryData}
+                showLabels={false}
+                ScSelected={SCountySelected}
+                showData={true}
+                countySelected={user_county}
+                handleSelect={handleSCountySelect}
+                data={[]}
+              ></SubCountySelect>
             </div>
-          </>
-        )}
 
-        {county_stats_merged_data !== null && (
-          <>
-            <div className="flex bg-white w-[50%] rounded-lg">
-              <div className="p-2 w-[50%]">
-                {/* user_county {JSON.stringify(geography)} */}
-
-                <SubCountySelect
-                  triggerQueryData={triggerQueryData}
-                  showLabels={false}
-                  ScSelected={SCountySelected}
-                  showData={true}
-                  countySelected={user_county}
-                  handleSelect={handleSCountySelect}
-                  data={[]}
-                ></SubCountySelect>
-              </div>
-
-              <div className="p-2 w-[50%]">
-                <WardSelect
-                  triggerQueryData={triggerQueryData}
-                  showLabels={false}
-                  showData={SCountySelected !== null}
-                  wardSelected={wardSelected}
-                  countySelected={user_county}
-                  handleSelect={handleWardSelect}
-                  data={[]}
-                  subcountySelected={SCountySelected}
-                ></WardSelect>
-              </div>
+            <div className="p-2 w-[50%]">
+              <WardSelect
+                triggerQueryData={triggerQueryData}
+                showLabels={false}
+                showData={SCountySelected !== null}
+                wardSelected={wardSelected}
+                countySelected={user_county}
+                handleSelect={handleWardSelect}
+                data={[]}
+                subcountySelected={SCountySelected}
+              ></WardSelect>
             </div>
-            <Cards
-              subcountySelected={SCountySelected}
-              wardSelected={wardSelected}
-              SCountySelected={SCountySelected}
-              ISsubcountySelected={SCountySelected !== null ? true : false}
-              ISwardSelected={wardSelected !== null ? true : false}
-              isCropsPage={true}
-              isLivestock={true}
-              isDashboard={true}
-            />
-          </>
-        )}
+          </div>
+          <Cards
+            subcountySelected={SCountySelected}
+            wardSelected={wardSelected}
+            SCountySelected={SCountySelected}
+            ISsubcountySelected={SCountySelected !== null ? true : false}
+            ISwardSelected={wardSelected !== null ? true : false}
+            isCropsPage={true}
+            isLivestock={true}
+            isDashboard={true}
+          />
+        </>
+      )}
     </div>
   );
 }

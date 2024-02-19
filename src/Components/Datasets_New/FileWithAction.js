@@ -341,8 +341,8 @@ function convertCSVToJson(csv) {
             },
           }}
           variant="outlined"
-          // onClick={() => handleButtonClick()}
-          onClick={() => setDownloadedJSON()}
+          onClick={() => handleButtonClick()}
+          // onClick={() => setDownloadedJSON()}
 
         >
           {userType !== "guest"
