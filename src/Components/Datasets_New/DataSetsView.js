@@ -46,7 +46,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOfflineLocalStorage } from "./OfflineStorage";
 // import { END_POINT } from "./KalroUrls";
 // import END_POINT from "./KalroUrls";
-const KALRO_URL = "https://kiamisapi.kalro.org/api/";
+const KALRO_URL = "https://kiamisapi.kalro.org/api";
 
 const END_POINT = {
   county_data_stats: `${KALRO_URL}/county_data_stats`,

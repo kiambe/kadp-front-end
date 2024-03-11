@@ -24,7 +24,7 @@ import { removeValueFromOffline ,setOfflineLocalStorage} from "../../../Componen
 
 
 let URL = "http://localhost:8000";
-const KALRO_URL  = "https://kiamisapi.kalro.org/api/"
+const KALRO_URL  = "https://kiamisapi.kalro.org/api"
 
 // const KALRO_URL  = "/kalro_api/"
 
