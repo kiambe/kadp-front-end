@@ -6,7 +6,8 @@ import WardSelect from "./pagecomponents/WardSelect";
 import SubCountySelect from "./pagecomponents/SubCountySelect";
 import { getWardData_Merged } from "../../../app-redux/features/appData/appDataSlice";
 
-function Dashboard({ user_county, geography, usagePolicy }) {
+function Dashboard({  geography, usagePolicy }) {
+  let user_county = geography?.state?.name ? geography?.state?.name  : ""
   const dispatch = useDispatch();
   const [showFiltersAndData, SetShowFiltersAndData] = useState(null);
 

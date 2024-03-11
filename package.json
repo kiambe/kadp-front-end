@@ -81,7 +81,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "env-cmd -f .env.production react-scripts --max-old-space-size=6144 build",
+    "build": "env-cmd -f .env.production react-scripts --max-old-space-size=6144 --openssl-legacy-provider  build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --coverage --watchAll"

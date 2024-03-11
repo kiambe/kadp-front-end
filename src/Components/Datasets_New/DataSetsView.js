@@ -274,26 +274,31 @@ const DataSetsView = (props) => {
                 : [];
             prepareFilesContent.push(
               <Box>
-                {donwloadedJSON !== null && (
-                  <>
-                    {userType !== "guest" && (
-                      <>
-                        <Dashboard
-                          usagePolicy={tempFile.usage_policy}
-                          user_county={
-                            geography?.state?.name ? geography?.state?.name : ""
-                          }
-                          geography={geography}
-                        ></Dashboard>
+                <>
+                  {userType !== "guest" && (
+                    <>
+                      {/* geography {JSON.stringify(geography?.state?.name ? geography?.state?.name:"---")} */}
+                      <Dashboard
+                        usagePolicy={tempFile.usage_policy}
+                        user_county={
+                          Object.keys(response.data?.geography).length
+                          ? response.data?.geography
+                          : { country: null, state: null, city: null }
+                          
+                          // geography?.state?.name ? geography?.state?.name  : ""
+                        }
+                        geography={ Object.keys(response.data?.geography).length
+                          ? response.data?.geography
+                          : { country: null, state: null, city: null }}
+                      ></Dashboard>
 
-                        <KALRODataVizualiztions
+                      {/* <KALRODataVizualiztions
                           usagePolicy={tempFile.usage_policy}
                           donwloadedJSON={donwloadedJSON}
-                        />
-                      </>
-                    )}
-                  </>
-                )}
+                        /> */}
+                    </>
+                  )}
+                </>
 
                 <Box className="d-flex">
                   <FileWithAction
@@ -810,6 +815,8 @@ const DataSetsView = (props) => {
                     : ""}
                   {geography?.state?.name ? geography?.state?.name + ", " : ""}
                   {geography?.city?.name ? geography?.city?.name : ""}
+
+                  
                 </Typography>
                 <Typography className="view_datasets_light_text text-left mt-25">
                   Constantly updating{" "}
@@ -817,8 +824,11 @@ const DataSetsView = (props) => {
                 <Typography className="view_datasets_bold_text text-left mt-3">
                   {isUpdating ? "Yes" : "No"}
                 </Typography>
+
+                
               </Box>
             </Box>
+         
             <div className="bold_title mt-50">
               {categories && categories.length ? "Dataset category" : ""}
             </div>
