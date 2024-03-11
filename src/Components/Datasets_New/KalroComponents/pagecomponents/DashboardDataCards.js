@@ -234,7 +234,7 @@ function DashboardDataCards({
 
                           onClick={() =>
                             downloadFile(
-                              `${ward_data_merged_data.file_name.replace("https://10.101.100.237/media","/kalro_media")}`,
+                              `${ward_data_merged_data.file_name.replace("https://10.101.100.237/media","https://kiamisapi.kalro.org/kalro_media")}`,
                               ward_data_merged_data.file_name
                             )
                           }
